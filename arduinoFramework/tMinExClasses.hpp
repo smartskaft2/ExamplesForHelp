@@ -12,7 +12,7 @@ class iMinExApplication
         virtual void initialize() = 0; // pure virtual
         virtual void execute()    = 0; // pure virtual
         
-        ~iMinExApplication() = default; // Virtual destructor
+        virtual ~iMinExApplication() = default; // Virtual destructor
 };
 
 
