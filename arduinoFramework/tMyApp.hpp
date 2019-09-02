@@ -1,13 +1,13 @@
 #pragma once
-#include "tMinExClasses.hpp"
+#include "framework.hpp"
 
 #include "Arduino.h"
-#include <string>
+#include <cstring>
 
 ///////////////////////////////////////
 // tMyApp application
 ///////////////////////////////////////
-class tMyApp : public iMinExApplication {
+class tMyApp : public iApp {
   public:
     ~tMyApp() = default;
     tMyApp() 

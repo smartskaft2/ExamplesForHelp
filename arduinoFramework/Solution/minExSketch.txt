@@ -1,0 +1,15 @@
+#include "tMinExClasses.hpp"
+#include "tMyApp.hpp"
+
+tMinExCoordinator coordinator{};
+tMyApp tmpApp{};
+
+void setup() {
+  Serial.begin(9600);
+  coordinator.addApp(&tmpApp, "TEST");
+  coordinator.initializeApps();
+}
+
+void loop() {
+  coordinator.runApps();
+}
