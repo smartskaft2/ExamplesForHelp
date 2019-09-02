@@ -1,12 +1,16 @@
-#include "tMinExClasses.hpp"
+#include "framework.hpp"
 #include "tMyApp.hpp"
+#include "tStaticVector.hpp"
+#include <functional>
 
-tMinExCoordinator coordinator{};
-tMyApp tmpApp{};
+using namespace MrOrange;
+
+tCoordinator<5> coordinator{};
 
 void setup() {
   Serial.begin(9600);
-  coordinator.addApp(&tmpApp, "TEST");
+  coordinator.addApp( []{ std::function<tMyApp()>; }, "TEST");
+  coordinator.addApp(WRAP_CONSTRUCTOR(tMyApp()));
   coordinator.initializeApps();
 }
 
