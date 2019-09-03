@@ -65,10 +65,6 @@ class tCoordinator
         {
             Applications.emplace_back(app, name);
         };
-        void addApp(std::function<iApp()> app, const char name[]) 
-        {
-            Applications.emplace_back(app(), name);
-        };
         
         // Initialize all apps
         void initializeApps()

@@ -15,7 +15,7 @@ class tStaticVector
         template<typename ...Args> void emplace_back(Args&&... args)
         {
             // Assert valid action
-            assert(Size<N);
+            assert(Size < N);
               
             // Construct value in memory of aligned storage
             new(&Data[Size++]) T(std::forward<Args>(args)...);
@@ -47,13 +47,13 @@ class tStaticVector
         }
         
         // Iteratior
-        T* begin() const
+        T* begin()
         {
             // Note: needs std::launder as of C++17
             return reinterpret_cast<T*>(&Data[0]);
         }
         
-        T* end() const
+        T* end()
         {
             // Note: needs std::launder as of C++17
             return reinterpret_cast<T*>(&Data[Size]); // Probably Size-1 instead
