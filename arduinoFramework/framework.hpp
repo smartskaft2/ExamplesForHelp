@@ -1,31 +1,31 @@
 #pragma once
-#include <memory>
+
 #include <cstring>
 
 ///////////////////////////////////////
 // Application interface    - For user define class inhertance
 ///////////////////////////////////////
 
-class iMinExApplication 
+class iApp 
 {
     public:
         virtual void initialize() = 0; // pure virtual
         virtual void execute()    = 0; // pure virtual
         
-        virtual ~iMinExApplication() = default; // Virtual destructor
+        virtual ~iApp() = default; // Virtual destructor
 };
 
 
 ///////////////////////////////////////
 // Application class    - For coordinator
 ///////////////////////////////////////
-class tMinExApplication
+class tApp
 {
     public:
-        tMinExApplication() = delete;
-        ~tMinExApplication() = default;
+        tApp() = delete;
+        ~tApp() = default;
         
-        tMinExApplication(iMinExApplication* app, const char name[]) : App(app)
+        tApp(iApp* app, const char name[]) : App(app)
         {
             strcpy(Name, name);
         };
@@ -34,7 +34,7 @@ class tMinExApplication
         void execute()    { App->execute();    };
         
     private:
-        iMinExApplication* App;
+        iApp* App;
         char Name[32]; // char[] because of low heap memory on microprocessors.
         
         // Callback frequency variables
@@ -45,16 +45,16 @@ class tMinExApplication
 ///////////////////////////////////////
 // Coordinator class    - Handles apps
 ///////////////////////////////////////
-class tMinExCoordinator
+class tCoordinator
 {
     public:
-        tMinExCoordinator() : Applications(), NumApps(0) {};
-        ~tMinExCoordinator() = default;
+        tCoordinator() : Applications(), NumApps(0) {};
+        ~tCoordinator() = default;
     
         // Add app to array.
-        void addApp(iMinExApplication* app, const char name[]) 
+        void addApp(iApp* app, const char name[]) 
         {
-            tMinExApplication* tmpPtr = new tMinExApplication(app, name);
+            tApp* tmpPtr = new tApp(app, name);
             Applications[++NumApps] = tmpPtr;
             tmpPtr = nullptr;
         };
@@ -78,6 +78,6 @@ class tMinExCoordinator
         };
         
     private:
-        tMinExApplication* Applications[];
+        tApp* Applications[];
         int NumApps;
 };

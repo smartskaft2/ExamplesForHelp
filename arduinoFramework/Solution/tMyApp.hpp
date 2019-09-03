@@ -4,6 +4,9 @@
 #include "Arduino.h"
 #include <cstring>
 
+namespace MrOrange
+{
+
 ///////////////////////////////////////
 // tMyApp application
 ///////////////////////////////////////
@@ -28,3 +31,5 @@ class tMyApp : public iApp {
   private:
     char Text[10];
 };
+
+} // namespace MrOrange

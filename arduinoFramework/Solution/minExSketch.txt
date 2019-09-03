@@ -1,0 +1,17 @@
+#include "framework.hpp"
+#include "tMyApp.hpp"
+
+using namespace MrOrange;
+
+tCoordinator<5> coordinator{};
+tMyApp app{};
+
+void setup() {
+  Serial.begin(9600);
+  coordinator.addApp(&app, "TEST");
+  coordinator.initializeApps();
+}
+
+void loop() {
+  coordinator.runApps();
+}
