@@ -1,16 +1,14 @@
 #include "framework.hpp"
 #include "tMyApp.hpp"
-#include "tStaticVector.hpp"
-#include <functional>
 
 using namespace MrOrange;
 
 tCoordinator<5> coordinator{};
+tMyApp app{};
 
 void setup() {
   Serial.begin(9600);
-  coordinator.addApp( []{ std::function<tMyApp()>; }, "TEST");
-  coordinator.addApp(WRAP_CONSTRUCTOR(tMyApp()));
+  coordinator.addApp(&app, "TEST");
   coordinator.initializeApps();
 }
 
